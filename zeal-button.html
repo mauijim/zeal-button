@@ -1,0 +1,208 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
+
+<link rel="import" href="../zeal-styles/zeal-typography.html">
+<link rel="import" href="../zeal-styles/zeal-color.html">
+<!-- <link rel="import" href="../zeal-styles/zeal-theme.html"> -->
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <zeal-button></zeal-button>
+
+@group Seed Elements
+@element zeal-button
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="zeal-button">
+
+  <template>
+    <style is="custom-style">
+
+    /* 
+     * TODO: Add hover states for each variation
+     * TODO: Add transitions for hover state
+     * TODO: Add responsive variations
+     * TODO: Finalize button typography
+     * TODO: Fix Padding
+     */
+
+      :host {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        margin:0 0 0.9375em;
+        padding: 1.125em 1.875em;
+        outline-width: 0;
+        border: 0;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+        @apply(--zeal-font-common-base);
+        line-height: 1.5em;
+        text-transform: uppercase;
+        background-color: var(--zeal-color-night, #252525);
+        color: var(--zeal-color-white, #fff);
+        text-align:center;
+      }
+
+      /* 
+       * Variations
+       */
+
+      /* Primary */
+      :host[primary] {
+        background-color: var(--zeal-color-blood-orange, #cc3300);
+        color: var(--zeal-color-white, #fff);
+        border: none;
+      }
+      :host[primary]:hover {
+        background-color: var(--zeal-color-rust, #a52900);
+      }
+
+      /* Secondary */
+      :host[secondary] {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        background-color: var(--zeal-color-white, #fff);
+        color: var(--zeal-color-blood-orange, #cc3300);
+        border: 2px solid var(--zeal-color-blood-orange, #cc3300);
+      }
+
+      :host[secondary]:hover {
+        background-color: var(--zeal-color-white, #fff);
+        color: var(--zeal-color-rust, #a52900);
+        border: 2px solid var(--zeal-color-rust, #a52900);
+      }
+
+      /* white */
+      :host[white] {
+        background-color: var(--zeal-color-white, #fff);
+        color: var(--zeal-color-sapphire, #003366);
+        border: none;
+      }
+      :host[white]:hover {
+        background-color: var(--zeal-color-gray-94, #eeeeee);
+        color: var(--zeal-color-sapphire, #003366);
+        border: none;
+      }
+
+      /* expand */
+      :host[expand] {
+        margin-left: 0;
+        margin-right:0;
+        display: block;
+      }
+    </style>
+    <content></content>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'zeal-button',
+
+    properties: {
+
+      /**
+       * Specifies a redirect url
+       */
+      link: {
+        type: String,
+        notify: true,
+        value: "#"
+      }
+
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    },
+
+    listeners: {
+      'tap': 'regularTap'
+    },
+
+    regularTap: function(e) {
+      // console.log(e);
+      location.assign(this.link);
+    },
+
+    // Element Behavior
+
+    /**
+     * The `zeal-button-lasers` event is fired whenever `fireLasers` is called.
+     *
+     * @event zeal-button-lasers
+     * @detail {{sound: String}}
+     */
+
+    /**
+     * Sometimes it's just nice to say hi.
+     *
+     * @param {string} greeting A positive greeting.
+     * @return {string} The full greeting.
+     */
+    sayHello: function(greeting) {
+      var response = greeting || 'Hello World!';
+      return 'zeal-button says, ' + response;
+    },
+
+    /**
+     * Attempt to destroy this element's enemies with a beam of light!
+     *
+     * Or, at least, dispatch an event in the vain hope that someone else will
+     * do the zapping.
+     */
+    fireLasers: function() {
+      this.fire('zeal-button-lasers', {sound: 'Pew pew!'});
+    }
+
+  });
+
+</script>
